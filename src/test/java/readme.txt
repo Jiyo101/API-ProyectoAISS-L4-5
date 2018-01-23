@@ -1,1 +1,1 @@
-Pon en este directorio tus pruebas.
+Save your test classes in this directory.
