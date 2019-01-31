@@ -19,7 +19,7 @@
 	</repositories>
 
 	<properties>
-		<appengine.version>1.9.46</appengine.version>	<!-- AppEngine version -->
+		<appengine.version>1.9.71</appengine.version>	<!-- AppEngine version -->
 		<servlet.version>2.5</servlet.version>	<!-- Servlet version -->
 		<jslt.version>1.2</jslt.version>	<!-- JSLT version -->
 		<restlet.version>2.3.7</restlet.version> <!-- Restlet version -->
@@ -203,7 +203,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.9</version>
+				<version>0.8.3</version>
 				<executions>
 					<execution>
 						<goals>
