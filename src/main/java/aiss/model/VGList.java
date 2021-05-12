@@ -17,6 +17,12 @@ public class VGList {
 		this.name = name;
 	}
 	
+	public VGList(String name, String description, Type type) {
+		this.name = name;
+		this.description = description;
+		this.type = type;
+	}
+	
 	protected void setVideogames(List<Videogame> v) {
 		videogames = v;
 	}
