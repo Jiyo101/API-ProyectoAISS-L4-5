@@ -7,6 +7,7 @@ public class VGList {
 
 	private String id;
 	private String name;
+	private String author;
 	private String description;
 	private Type type;
 	private List<Videogame> videogames;
@@ -69,13 +70,21 @@ public class VGList {
 		
 		return videogame;
 	}
-	
+
 	public Type getType() {
 		return type;
 	}
 
 	public void setType(Type type) {
 		this.type = type;
+	}
+	
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
 	public void addVideogame(Videogame v) {
