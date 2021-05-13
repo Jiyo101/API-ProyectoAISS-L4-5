@@ -191,5 +191,4 @@ public class MapVGListRepository implements VGListRepository{
 	public void deleteVideogame(String videogameId) {
 		videogameMap.remove(videogameId);
 	}
-	
 }

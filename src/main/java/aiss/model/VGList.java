@@ -24,7 +24,7 @@ public class VGList {
 		this.type = type;
 	}
 	
-	protected void setVideogames(List<Videogame> v) {
+	public void setVideogames(List<Videogame> v) {
 		videogames = v;
 	}
 	
