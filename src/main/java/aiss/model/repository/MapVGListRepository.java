@@ -107,8 +107,8 @@ public class MapVGListRepository implements VGListRepository{
 		addVideogame(vgl2.getId(), v1.getId());
 		addVideogame(vgl2.getId(), v5.getId());
 		
-		addVideogame(vgl2.getId(), v2.getId());
-		addVideogame(vgl2.getId(), v3.getId());
+		addVideogame(vgl3.getId(), v2.getId());
+		addVideogame(vgl3.getId(), v3.getId());
 	}
 	
 	// VGList related operations
