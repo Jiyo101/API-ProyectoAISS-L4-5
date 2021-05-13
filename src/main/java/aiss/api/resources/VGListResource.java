@@ -25,7 +25,7 @@ import aiss.model.Videogame;
 import aiss.model.repository.MapVGListRepository;
 import aiss.model.repository.VGListRepository;
 
-@Path("/lists")
+@Path("/vglists")
 public class VGListResource {
 	
 	/* Singleton */
@@ -124,7 +124,7 @@ public class VGListResource {
 	
 	
 	@POST	
-	@Path("/{playlistId}/{songId}")
+	@Path("/{vglistId}/{videogameId}")
 	@Consumes("text/plain")
 	@Produces("application/json")
 	public Response addVideogame(@Context UriInfo uriInfo,@PathParam("vglistId") String vglistId, @PathParam("videogameId") String videogameId)
@@ -154,7 +154,7 @@ public class VGListResource {
 	
 	
 	@DELETE
-	@Path("/{playlistId}/{songId}")
+	@Path("/{vglistId}/{videogameId}")
 	public Response removeVideogame(@PathParam("vglistId") String vglistId, @PathParam("videogameId") String videogameId) {
 		VGList vglist = repository.getVGList(vglistId);
 		Videogame videogame = repository.getVideogame(videogameId);

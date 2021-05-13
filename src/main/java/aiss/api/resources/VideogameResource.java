@@ -1,5 +1,6 @@
 package aiss.api.resources;
 
+import java.net.URI;
 import java.util.Collection;
 
 import javax.ws.rs.Consumes;
@@ -12,13 +13,18 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.Response.ResponseBuilder;
+
+import org.jboss.resteasy.spi.BadRequestException;
+import org.jboss.resteasy.spi.NotFoundException;
 
 import aiss.model.Videogame;
 import aiss.model.repository.MapVGListRepository;
 import aiss.model.repository.VGListRepository;
 
-@Path("/songs")
+@Path("/videogames")
 public class VideogameResource {
 
 	public static VideogameResource _instance=null;
@@ -39,7 +45,7 @@ public class VideogameResource {
 	@Produces("application/json")
 	public Collection<Videogame> getAll()
 	{
-		return null;
+		return repository.getAllVideogames();
 	}
 	
 	
@@ -49,27 +55,78 @@ public class VideogameResource {
 	public Videogame get(@PathParam("id") String videogameId)
 	{
 		
-		return null;
+		Videogame videogame = repository.getVideogame(videogameId);
+		
+		if (videogame == null) {
+			throw new NotFoundException("The videogame with id="+ videogameId +" was not found");			
+		}
+		
+		return videogame;
 	}
 	
 	@POST
 	@Consumes("application/json")
 	@Produces("application/json")
 	public Response addVideogame(@Context UriInfo uriInfo, Videogame videogame) {
-		return null;
+		if (videogame.getTitle() == null || "".equals(videogame.getTitle()))
+			throw new BadRequestException("The title of the videogame must not be null");
+
+		repository.addVideogame(videogame);
+
+		// Builds the response. Returns the videogame the has just been added.
+		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
+		URI uri = ub.build(videogame.getId());
+		ResponseBuilder resp = Response.created(uri);
+		resp.entity(videogame);			
+		return resp.build();
 	}
 	
 	
 	@PUT
 	@Consumes("application/json")
 	public Response updateVideogame(Videogame videogame) {
-		return null;
+		Videogame oldvideogame = repository.getVideogame(videogame.getId());
+		if (oldvideogame == null) {
+			throw new NotFoundException("The videogame with id="+ videogame.getId() +" was not found");			
+		}
+		
+		// Update name
+		if (videogame.getTitle()!=null)
+			oldvideogame.setTitle(videogame.getTitle());
+		
+		// Update description
+		if (videogame.getScore()!=null)
+			oldvideogame.setScore(videogame.getScore());
+		
+		// Update description
+		if (videogame.getYear() != null)
+			oldvideogame.setYear(videogame.getYear());
+
+		// Update description
+		if (videogame.getPlatform() != null)
+			oldvideogame.setPlatform(videogame.getPlatform());
+
+		// Update description
+		if (videogame.getGenre() != null)
+			oldvideogame.setGenre(videogame.getGenre());
+		
+		// Update description
+		if (videogame.getPublisher() != null)
+			oldvideogame.setPublisher(videogame.getPublisher());
+		
+		return Response.noContent().build();
 	}
 	
 	@DELETE
 	@Path("/{id}")
 	public Response removeVideogame(@PathParam("id") String videogameId) {
-		return null;
+		Videogame toberemoved=repository.getVideogame(videogameId);
+		if (toberemoved == null)
+			throw new NotFoundException("The videogame with id="+ videogameId +" was not found");
+		else
+			repository.deleteVideogame(videogameId);
+		
+		return Response.noContent().build();
 	}
 	
 }
