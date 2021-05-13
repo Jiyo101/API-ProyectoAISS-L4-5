@@ -30,7 +30,7 @@ public class VideogameResource {
 	public static VideogameResource _instance=null;
 	VGListRepository repository;
 	
-	private VideogameResource(){
+	public VideogameResource(){
 		repository=MapVGListRepository.getInstance();
 	}
 	
