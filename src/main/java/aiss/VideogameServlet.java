@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class HelloWorldServlet extends HttpServlet {
+public class VideogameServlet extends HttpServlet {
 	
-	private static final Logger log = Logger.getLogger(HelloWorldServlet.class.getName());
+	private static final Logger log = Logger.getLogger(VideogameServlet.class.getName());
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
@@ -18,6 +18,6 @@ public class HelloWorldServlet extends HttpServlet {
 		log.log(Level.FINE, "Processing GET request");
 		 
 		resp.setContentType("text/plain");
-		resp.getWriter().println("Hello world!");
+		resp.getWriter().println("VIDEOGAMES!");
 	}
 }
