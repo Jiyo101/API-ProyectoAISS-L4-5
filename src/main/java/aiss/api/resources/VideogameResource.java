@@ -1,8 +1,11 @@
 package aiss.api.resources;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,6 +17,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
@@ -23,6 +27,8 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import org.jboss.resteasy.spi.BadRequestException;
 import org.jboss.resteasy.spi.NotFoundException;
 
+import aiss.comparators.ComparatorNameVideogame;
+import aiss.comparators.ComparatorNameVideogameReversed;
 import aiss.model.Genre;
 import aiss.model.Videogame;
 import aiss.model.repository.MapVGListRepository;
@@ -47,9 +53,25 @@ public class VideogameResource {
 	
 	@GET
 	@Produces("application/json")
-	public Collection<Videogame> getAll()
+	public Collection<Videogame> getAll(@QueryParam("order") String order, @QueryParam("isEmpty") Boolean isEmpty,
+			@QueryParam("title") String title)
 	{
-		return repository.getAllVideogames();
+		List<Videogame> res = new ArrayList<Videogame>();
+		for (Videogame v:repository.getAllVideogames()) {
+			if(title==null || v.getTitle().equals(title)) {
+				res.add(v);
+			}
+		}
+		if(order != null) {
+			if(order.equals("title")) {
+				Collections.sort(res, new ComparatorNameVideogame());
+			} else if(order.equals("-title")) {
+				Collections.sort(res, new ComparatorNameVideogameReversed());
+			} else {
+				throw new BadRequestException("The order parameter must be 'title' or '-title'");
+			}
+		}
+		return res;
 	}
 	
 	
