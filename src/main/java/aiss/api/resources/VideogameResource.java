@@ -2,6 +2,9 @@ package aiss.api.resources;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -20,6 +23,7 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import org.jboss.resteasy.spi.BadRequestException;
 import org.jboss.resteasy.spi.NotFoundException;
 
+import aiss.model.Genre;
 import aiss.model.Videogame;
 import aiss.model.repository.MapVGListRepository;
 import aiss.model.repository.VGListRepository;
@@ -62,6 +66,25 @@ public class VideogameResource {
 		}
 		
 		return videogame;
+	}
+	
+
+	@GET
+	@Path("/get/{genre}")
+	@Produces("application/json")
+	public Set<Videogame> getGenre(@PathParam("genre") Genre genre)
+	{
+		Set<Videogame> lv = repository.getAllVideogames().stream().collect(Collectors.toSet());
+		Set<Videogame> res = new HashSet<>();
+		for (Videogame v:lv) {
+			if (v == null) {
+				throw new NotFoundException("The videogame was not found");			
+			}
+			if(v.getGenre()==genre) {
+				res.add(v);
+			}
+		}
+		return res;
 	}
 	
 	@POST

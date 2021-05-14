@@ -14,7 +14,8 @@ public class MapVGListRepository implements VGListRepository{
 	Map<String, VGList> vglistMap;
 	Map<String, Videogame> videogameMap;
 	private static MapVGListRepository instance=null;
-	private int index=0;
+	private int i=0;
+	private int j=0;
 	
 	
 	public static MapVGListRepository getInstance() {
@@ -114,7 +115,7 @@ public class MapVGListRepository implements VGListRepository{
 	// VGList related operations
 	@Override
 	public void addVGList(VGList vgl) {
-		String id = "vgl" + index++;	
+		String id = "vgl" + j++;	
 		vgl.setId(id);
 		vglistMap.put(id,vgl);
 	}
@@ -161,7 +162,7 @@ public class MapVGListRepository implements VGListRepository{
 	
 	@Override
 	public void addVideogame(Videogame v) {
-		String id = "v" + index++;
+		String id = "v" + i++;
 		v.setId(id);
 		videogameMap.put(id, v);
 	}

@@ -102,5 +102,14 @@ public class VGList {
 		if (v!=null)
 			videogames.remove(v);
 	}
+	
+	public static Float getAverage(VGList vgl) {
+		List<Videogame> lv = vgl.getVideogames();
+		Float res = 0f;
+		for (Videogame v:lv) {
+			res += v.getScore();
+		}
+		return res/lv.size();
+	}
 
 }
