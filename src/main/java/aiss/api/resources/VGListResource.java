@@ -84,7 +84,7 @@ public class VGListResource {
 	
 	
 	@GET
-	@Path("/get/{vglistId}")
+	@Path("/{vglistId}")
 	@Produces("application/json")
 	public VGList get(@PathParam("vglistId") String id)
 	{
@@ -98,7 +98,7 @@ public class VGListResource {
 	}
 	
 	@GET
-	@Path("/get/{type}")
+	@Path("/{type}")
 	@Produces("application/json")
 	public Set<VGList> getType(@PathParam("type") Type type)
 	{
