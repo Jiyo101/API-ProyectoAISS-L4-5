@@ -98,7 +98,7 @@ public class VGListResource {
 	}
 	
 	@GET
-	@Path("/{type}")
+	@Path("/getByType/{type}")
 	@Produces("application/json")
 	public Set<VGList> getType(@PathParam("type") Type type)
 	{

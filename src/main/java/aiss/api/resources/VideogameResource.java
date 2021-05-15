@@ -92,7 +92,7 @@ public class VideogameResource {
 	
 
 	@GET
-	@Path("/get/{genre}")
+	@Path("/getByGenre/{genre}")
 	@Produces("application/json")
 	public Set<Videogame> getByGenre(@PathParam("genre") Genre genre)
 	{
