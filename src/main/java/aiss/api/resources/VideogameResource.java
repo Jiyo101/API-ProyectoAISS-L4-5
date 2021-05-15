@@ -94,7 +94,7 @@ public class VideogameResource {
 	@GET
 	@Path("/get/{genre}")
 	@Produces("application/json")
-	public Set<Videogame> getGenre(@PathParam("genre") Genre genre)
+	public Set<Videogame> getByGenre(@PathParam("genre") Genre genre)
 	{
 		Set<Videogame> lv = repository.getAllVideogames().stream().collect(Collectors.toSet());
 		Set<Videogame> res = new HashSet<>();
