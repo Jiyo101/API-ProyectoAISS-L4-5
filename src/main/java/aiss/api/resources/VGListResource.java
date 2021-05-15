@@ -84,9 +84,9 @@ public class VGListResource {
 	
 	
 	@GET
-	@Path("/get/{id}")
+	@Path("/get/{vglistId}")
 	@Produces("application/json")
-	public VGList get(@PathParam("id") String id)
+	public VGList get(@PathParam("vglistId") String id)
 	{
 		VGList list = repository.getVGList(id);
 		
@@ -116,9 +116,9 @@ public class VGListResource {
 	}
 	
 	@GET
-	@Path("/getAverage/{id}")
+	@Path("/getAverage/{vglistId}")
 	@Produces("application/json")
-	public Float getAverageScore(@PathParam("id") String vglistId)
+	public Float getAverageScore(@PathParam("vglistId") String vglistId)
 	{
 		VGList res = repository.getVGList(vglistId);
 		return VGList.getAverage(res);
@@ -172,8 +172,8 @@ public class VGListResource {
 	}
 	
 	@DELETE
-	@Path("/{id}")
-	public Response removeVGList(@PathParam("id") String id) {
+	@Path("/{vglistId}")
+	public Response removeVGList(@PathParam("vglistId") String id) {
 		VGList toberemoved=repository.getVGList(id);
 		if (toberemoved == null)
 			throw new NotFoundException("The videogame list with id="+ id +" was not found");
