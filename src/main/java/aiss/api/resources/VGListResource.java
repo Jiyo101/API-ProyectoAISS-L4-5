@@ -153,8 +153,8 @@ public class VGListResource {
 			throw new NotFoundException("The videogame list with id="+ vglist.getId() +" was not found");			
 		}
 		
-//		if (vglist.getVideogames()!=null)
-//			throw new BadRequestException("The videogames property is not editable.");
+		if (vglist.getVideogames()!=null)
+			throw new BadRequestException("The videogames property is not editable.");
 		
 		// Update name
 		if (vglist.getName()!=null)
@@ -165,9 +165,9 @@ public class VGListResource {
 			oldvglist.setDescription(vglist.getDescription());
 		
 		// Update videogames
-		if (vglist.getVideogames()!=null)
-			oldvglist.setVideogames(vglist.getVideogames());
-		
+//		if (vglist.getVideogames()!=null)
+//			oldvglist.setVideogames(vglist.getVideogames());
+//		
 		return Response.noContent().build();
 	}
 	
